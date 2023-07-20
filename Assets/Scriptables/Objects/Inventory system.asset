@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f11cf35cf42fb46b01c34d23506a82, type: 3}
+  m_Name: Inventory system
+  m_EditorClassIdentifier: 
+  RIDWorkingValue: 0
+  RIDBrokenValue: 0
+  TLDworkingValue: 0
+  TLDBrokenValue: 0
+  DRDValue: 0
+  DRDValue1: 0
+  Gloves: 0
+  Mask: 0
+  BoilerSuite: 0
+  Boots: 0
+  ShoeCover: 0
+  Tong: 0
+  LobbyorNot: 1
+  TrollyCarSelected: 0
