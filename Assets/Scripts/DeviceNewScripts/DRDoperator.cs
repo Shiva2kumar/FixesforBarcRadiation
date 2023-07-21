@@ -6,15 +6,15 @@ using TMPro;
 using System;
 using Random = UnityEngine.Random;
 public class DRDoperator : MonoBehaviour
-{ 
-    public float c = 0.60f, c1 = 0.137f,a;
-    public Vector3 obj,obj2;
-    public double dosecs137, dosecs60, both, dosecs602nd,dosecs1372nd,Dose_60,Dose_137,Dose_602nd,Dose_1372nd;
-    public double Finaldose60,Finaldose137,Final_dose60,Final_dose137;
-    public float r, r1,r2,r3,i,j;
-    private bool cs60,DRD;
+{
+    public float c = 0.60f, c1 = 0.137f, a;
+    public Vector3 obj, obj2;
+    public double dosecs137, dosecs60, both, dosecs602nd, dosecs1372nd, Dose_60, Dose_137, Dose_602nd, Dose_1372nd, Dosecombine60_137;
+    public double Finaldose60, Finaldose137, Final_dose60, Final_dose137;
+    public float r, r1, r2, r3, i, j;
+    private bool cs60, DRD;
     private bool cs137;
-    public TextMeshProUGUI DRDcs60,DRDcs137,DRDradiation,dose_60,dose_137;
+    public TextMeshProUGUI DRDcs60, DRDcs137, DRDradiation, dose_60, dose_137, doseComplete;
 
 
 
@@ -29,7 +29,7 @@ public class DRDoperator : MonoBehaviour
         i = Random.Range(0.05f, 0.1f);
         j = Random.Range(0.05f, 0.1f);
 
-        if (DRD==false)
+        if (DRD == false)
         {
             dosecs60 = i;
             dosecs137 = j;
@@ -42,26 +42,32 @@ public class DRDoperator : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (DRD) { 
-
-        if (other.gameObject.tag=="cs60")
+        if (DRD)
         {
-            Stack mystack = new Stack();
-            cs60 = true;
-            if (mystack.Count == 0)
-            {
-                r = Vector3.Distance(this.transform.position, other.gameObject.transform.position);
-                dosecs60 = (12500 * 0.60 * ((Mathf.Exp(-7 ^ -3)) * r) / (r * r)) * 0.000001f;
 
-                    Dose_60 = ((2814 * c) / (r * r))* 0.000001;
+            if (other.gameObject.tag == "cs60")
+            {
+                Stack mystack = new Stack();
+                cs60 = true;
+                if (mystack.Count == 0)
+                {
+                    r = Vector3.Distance(this.transform.position, other.gameObject.transform.position);
+                    dosecs60 = (12500 * 0.60 * ((Mathf.Exp(-7 ^ -3)) * r) / (r * r)) * 0.000001f;
+
+                    dosecs60 = Math.Round(dosecs60, 2, MidpointRounding.ToEven);
+                    doseComplete.text = dosecs60.ToString() + "µSv";
+
+                    //
+                    //           Dose_60 = (((2814 * c) / (r * r))* 0.000001)*0.0277f;
+                    //          doseComplete.text = Dose_60.ToString();
+                }
+                mystack.Push(r);
+                if (mystack.Count == 1)
+                {
+                    StartCoroutine(calc());
+                    obj = other.gameObject.transform.position;
+                }
             }
-            mystack.Push(r);
-            if (mystack.Count == 1)
-            {  
-                StartCoroutine(calc());
-                obj = other.gameObject.transform.position;
-            }
-        }
             if (other.gameObject.tag == "cs137")
             {
                 cs137 = true;
@@ -70,8 +76,11 @@ public class DRDoperator : MonoBehaviour
                 {
                     r2 = Vector3.Distance(this.transform.position, other.gameObject.transform.position);
                     dosecs137 = (2814 * 0.137 * (Mathf.Exp(-9 ^ -3) * r2) / (r2 * r2)) * 0.000001f;
-                    Dose_137=(12500*c)/(r2* r2)* 0.000001;
 
+                    dosecs137 = Math.Round(dosecs137, 2, MidpointRounding.ToEven);
+                    //
+                    //      Dose_137=(((12500*c)/(r2* r2)* 0.000001));
+                    doseComplete.text = Dose_137.ToString()+ "µSv";
                 }
                 cs.Push(r2);
                 if (cs.Count == 1)
@@ -84,7 +93,13 @@ public class DRDoperator : MonoBehaviour
                 {
                     both = Finaldose60 + Finaldose137;
                     both = Math.Round(both, 2, MidpointRounding.ToEven);
-                    DRDradiation.text = both.ToString()+ "µSv/h";
+                    DRDradiation.text = both.ToString() + "µSv/h";
+
+                    doseComplete.text = both.ToString() + "µSv";
+
+                    /*         Dosecombine60_137 = Dose_60 + Dose_137;
+                             Dosecombine60_137 = Math.Round(Dosecombine60_137, 2, MidpointRounding.ToEven);
+                             doseComplete.text = Dosecombine60_137.ToString();*/
                 }
             }
         }
@@ -92,10 +107,10 @@ public class DRDoperator : MonoBehaviour
     public IEnumerator calc()
     {
         yield return new WaitForSeconds(1);
-            r3 = Vector3.Distance(this.transform.position-new Vector3(0,0,0.5f), obj);
+        r3 = Vector3.Distance(this.transform.position - new Vector3(0, 0, 0.5f), obj);
         dosecs602nd = (12500 * 0.60 * ((Mathf.Exp(-7 ^ -3)) * r3) / (r3 * r3)) * 0.000001f;
-        Finaldose60 =i+ (dosecs60 + dosecs602nd)* 0.27;
-        Finaldose60 = Math.Round(Finaldose60, 4, MidpointRounding.ToEven);
+        Finaldose60 = i + (dosecs60 + dosecs602nd) * 0.53;
+        Finaldose60 = Math.Round(Finaldose60, 2, MidpointRounding.ToEven);
         //   DRDcs60.text = Finaldose60 + "µSv/h";
         DRDradiation.text = Finaldose60 + "µSv/h";
         //dose_60.text = Dose_60 + "µSv/h";
@@ -105,10 +120,10 @@ public class DRDoperator : MonoBehaviour
         yield return new WaitForSeconds(1);
         r1 = Vector3.Distance(this.transform.position - new Vector3(0, 0, 0.5f), obj2);
         dosecs1372nd = (2814 * 0.137 * (Mathf.Exp(-9 ^ -3) * r1) / (r1 * r1)) * 0.000001f;
-        Finaldose137 = j+(dosecs137 + dosecs1372nd) * 0.27;
-        Finaldose137 = Math.Round(Finaldose137, 4, MidpointRounding.ToEven);
+        Finaldose137 = j + (dosecs137 + dosecs1372nd) * 0.53;
+        Finaldose137 = Math.Round(Finaldose137, 2, MidpointRounding.ToEven);
         DRDradiation.text = Finaldose137 + "µSv/h";
-       // dose_137.text=Dose_137+ "µSv/h";
+        // dose_137.text=Dose_137+ "µSv/h";
     }
     private void OnTriggerExit(Collider other)
     {

@@ -10,11 +10,14 @@ public class MobilePhone : MonoBehaviour
     public bool IstimerStart, Doorsunlocked, AudioDevice;
     public float timeValue = 40f;
     public AudioSource AudioSys;
+    public AudioSource source;
+    public AudioClip clip;
     public ControllerInputsManualBounds ControllerInputBound;
-    public bool _ActivateDevice, buttonA, buttonX,notepad,first,second;
-    public GameObject PhoneText,doorunlocked;
+    public bool _ActivateDevice, buttonA, buttonX, notepad, first, second;
+    public GameObject PhoneText, doorunlocked;
     void Start()
     {
+
         AudioSys.mute = true;
         AudioDevice = false;
         screenmaterial.color = Color.black;
@@ -26,6 +29,7 @@ public class MobilePhone : MonoBehaviour
     }
     void Update()
     {
+
         buttonA = OVRInput.Get(OVRInput.Button.One);
         buttonX = OVRInput.Get(OVRInput.Button.Three);
 
@@ -49,7 +53,7 @@ public class MobilePhone : MonoBehaviour
         if (first == true)
         {
             PhoneText.SetActive(true);
-            if (OVRInput.Get(OVRInput.RawButton.X)|| OVRInput.Get(OVRInput.RawButton.A))
+            if (OVRInput.Get(OVRInput.RawButton.X) || OVRInput.Get(OVRInput.RawButton.A))
             {
                 first = false;
             }
@@ -57,26 +61,26 @@ public class MobilePhone : MonoBehaviour
         if (first == false)
         {
             PhoneText.SetActive(false);
-        
+
         }
 
-        if(Doorsunlocked== true)
+        if (Doorsunlocked == true)
         {
             doorunlocked.SetActive(true);
         }
     }
     public void PhonePickedup()
     {
-        if(AudioDevice == true)
+        if (AudioDevice == true)
         {
             AudioSys.mute = false;
         }
-        if (buttonA||buttonX)
+        if (buttonA || buttonX)
         {
             AudioSys.mute = true;
             AudioDevice = false;
-            
-        //    notepad = true;
+
+            //    notepad = true;
         }
     }
     public void OnTriggerEnter(Collider other)
@@ -88,7 +92,7 @@ public class MobilePhone : MonoBehaviour
             {
                 _ActivateDevice = true;
                 Debug.Log("hello");
-            //    PhoneText.SetActive(true);
+                //    PhoneText.SetActive(true);
             }
             else
             {
@@ -101,7 +105,7 @@ public class MobilePhone : MonoBehaviour
             {
                 _ActivateDevice = true;
                 Debug.Log("xbutton");
-           //     PhoneText.SetActive(true);
+                //     PhoneText.SetActive(true);
             }
             else
             {
@@ -130,7 +134,7 @@ public class MobilePhone : MonoBehaviour
             {
                 _ActivateDevice = true;
                 Debug.Log("hello");
-       //         PhoneText.SetActive(true);
+                //         PhoneText.SetActive(true);
             }
             else
             {
@@ -141,10 +145,10 @@ public class MobilePhone : MonoBehaviour
         if (goo.name == "hands:b_l_hand_ignore")
         {
             if (ControllerInputBound.X == true)
-            { 
-            _ActivateDevice = true;
-             Debug.Log("xbutton");
-                   
+            {
+                _ActivateDevice = true;
+                Debug.Log("xbutton");
+
             }
             else
             {
@@ -152,14 +156,15 @@ public class MobilePhone : MonoBehaviour
                 PhoneText.SetActive(false);
 
             }
-    
-     if (OVRInput.Get(OVRInput.RawButton.X)|| OVRInput.Get(OVRInput.RawButton.A))
+
+            if (OVRInput.Get(OVRInput.RawButton.X) || OVRInput.Get(OVRInput.RawButton.A))
             {
                 first = true;
-         PhoneText.SetActive(true);   
+                //      PhoneText.SetActive(true);   
+                source.PlayOneShot(clip);
+                //audio
+            }
 
-        }
-            
         }//
 
         if (buttonA || buttonX)
@@ -173,7 +178,7 @@ public class MobilePhone : MonoBehaviour
             buttonX = false;
         }
     }
- 
+
 
     public void OnTriggerExit(Collider other)
     {

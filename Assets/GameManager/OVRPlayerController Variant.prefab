@@ -2957,6 +2957,7 @@ Transform:
   - {fileID: 1347547589636323532}
   - {fileID: 2579886198353265793}
   - {fileID: 3636942323154437129}
+  - {fileID: 8583088681524511246}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6154,21 +6155,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d6eb4b339392441b8bcfa515c9a192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ColliderPhysics: {fileID: 11400000, guid: b3a0fc53d839ed748af385f28a126acf, type: 2}
   InventorySystem: {fileID: 11400000, guid: 9c857660cdc1f354f86d5af21a1c9570, type: 2}
   InputsPass: {fileID: 11400000, guid: 3770d4cf59b6e4743ab2cd019a8c2714, type: 2}
-  RayCastValue: {fileID: 11400000, guid: b3a0fc53d839ed748af385f28a126acf, type: 2}
   ButtonPressR: 0
   ButtonPressL: 0
   origin: {fileID: 1327578889396691773}
   Trollycar: {fileID: 0}
   LastHit: {fileID: 0}
   LastHit2: {fileID: 0}
+  Empty: {fileID: 0}
   FrameTimes: 100
   transformlocation: {x: 0, y: 0, z: 0}
   Num: 0
   timeRemaining: 2
   IsSelected: 0
-  SelectedHand: 0
+  selectedhands: 0
 --- !u!1 &5466504756657935158
 GameObject:
   m_ObjectHideFlags: 0
@@ -6245,6 +6247,37 @@ Transform:
   m_Father: {fileID: 3454087096673149143}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5513338940487368944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8583088681524511246}
+  m_Layer: 6
+  m_Name: EmptyCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8583088681524511246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5513338940487368944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1347547589636323522}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5567940187512457364
 GameObject:
   m_ObjectHideFlags: 0
@@ -6289,21 +6322,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d6eb4b339392441b8bcfa515c9a192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ColliderPhysics: {fileID: 11400000, guid: b3a0fc53d839ed748af385f28a126acf, type: 2}
   InventorySystem: {fileID: 11400000, guid: 9c857660cdc1f354f86d5af21a1c9570, type: 2}
   InputsPass: {fileID: 11400000, guid: 3770d4cf59b6e4743ab2cd019a8c2714, type: 2}
-  RayCastValue: {fileID: 11400000, guid: b3a0fc53d839ed748af385f28a126acf, type: 2}
   ButtonPressR: 0
   ButtonPressL: 0
   origin: {fileID: 2422231656715319087}
   Trollycar: {fileID: 0}
   LastHit: {fileID: 0}
   LastHit2: {fileID: 0}
+  Empty: {fileID: 0}
   FrameTimes: 100
   transformlocation: {x: 0, y: 0, z: 0}
   Num: 0
   timeRemaining: 2
   IsSelected: 0
-  SelectedHand: 1
+  selectedhands: 1
 --- !u!1 &5575318703409700435
 GameObject:
   m_ObjectHideFlags: 0
