@@ -10,7 +10,6 @@ using Unity.VisualScripting;
 
 public class deviceteletector : MonoBehaviour
 {
-  
     public float c = 0.60f, c1 = 0.137f;
     public double dosecs137, dosecs60, both,combine;
     public  float r, r1, variation,r2,r6;
@@ -29,7 +28,6 @@ public class deviceteletector : MonoBehaviour
 
     i = Random.Range(0.05f, 0.1f);
     j = Random.Range(0.05f, 0.1f);
-
         if (cs60==false||cs137==false)
         {
             //    dosecs60 = i;
@@ -41,9 +39,6 @@ public class deviceteletector : MonoBehaviour
             radiation.text = i.ToString();
          //   dosecs137 = j;
         }
-    
-
-
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -60,7 +55,7 @@ public class deviceteletector : MonoBehaviour
                 r = Vector3.Distance(this.transform.position, other.gameObject.transform.position);
                 dosecs60 = i + (12500 * 0.60 * ((Mathf.Exp(-7 ^ -3)) * r) / (r * r)) * 0.000001f;
                 dosecs60 = Math.Round(dosecs60, 2, MidpointRounding.ToEven);
-                if (dosecs60 < 0.2f)
+                if (dosecs60 > 0.2f)
                 {
                     radiation.text = dosecs60.ToString();
                 }

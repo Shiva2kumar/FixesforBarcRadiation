@@ -162,10 +162,10 @@ public class MobilePhone : MonoBehaviour
                 first = true;
                 //      PhoneText.SetActive(true);   
                 source.PlayOneShot(clip);
-                //audio
-            }
 
-        }//
+            }
+        }
+        
 
         if (buttonA || buttonX)
         {

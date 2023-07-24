@@ -13410,11 +13410,19 @@ PrefabInstance:
     - target: {fileID: 6652442495257014478, guid: 7e2c827c7298cef4286648862029f97b, type: 3}
       propertyPath: clip
       value: 
+<<<<<<< Updated upstream
       objectReference: {fileID: 8300000, guid: bd6ffdbedc3d51840b870e80a9c696f0, type: 3}
     - target: {fileID: 6652442495257014478, guid: 7e2c827c7298cef4286648862029f97b, type: 3}
       propertyPath: source
       value: 
       objectReference: {fileID: 1661149849}
+=======
+      objectReference: {fileID: 8300000, guid: 409672dbad0321b48932aa8e7d903cbe, type: 3}
+    - target: {fileID: 6652442495257014478, guid: 7e2c827c7298cef4286648862029f97b, type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 6652442496850907734}
+>>>>>>> Stashed changes
     - target: {fileID: 6652442495257014478, guid: 7e2c827c7298cef4286648862029f97b, type: 3}
       propertyPath: PhoneText
       value: 
@@ -13429,6 +13437,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: b3a0fc53d839ed748af385f28a126acf, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e2c827c7298cef4286648862029f97b, type: 3}
+--- !u!82 &6652442496850907734 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6652442495257014476, guid: 7e2c827c7298cef4286648862029f97b, type: 3}
+  m_PrefabInstance: {fileID: 6652442496850907733}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6765265497386873833
 GameObject:
   m_ObjectHideFlags: 0

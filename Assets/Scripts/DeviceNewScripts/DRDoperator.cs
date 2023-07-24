@@ -6,6 +6,7 @@ using TMPro;
 using System;
 using Random = UnityEngine.Random;
 public class DRDoperator : MonoBehaviour
+
 {
     public float c = 0.60f, c1 = 0.137f, a;
     public Vector3 obj, obj2;
@@ -15,8 +16,6 @@ public class DRDoperator : MonoBehaviour
     private bool cs60, DRD;
     private bool cs137;
     public TextMeshProUGUI DRDcs60, DRDcs137, DRDradiation, dose_60, dose_137, doseComplete;
-
-
 
     private void Start()
     {
@@ -28,13 +27,11 @@ public class DRDoperator : MonoBehaviour
     {
         i = Random.Range(0.05f, 0.1f);
         j = Random.Range(0.05f, 0.1f);
-
         if (DRD == false)
         {
             dosecs60 = i;
             dosecs137 = j;
         }
-
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -44,7 +41,6 @@ public class DRDoperator : MonoBehaviour
     {
         if (DRD)
         {
-
             if (other.gameObject.tag == "cs60")
             {
                 Stack mystack = new Stack();
@@ -53,11 +49,8 @@ public class DRDoperator : MonoBehaviour
                 {
                     r = Vector3.Distance(this.transform.position, other.gameObject.transform.position);
                     dosecs60 = (12500 * 0.60 * ((Mathf.Exp(-7 ^ -3)) * r) / (r * r)) * 0.000001f;
-
                     dosecs60 = Math.Round(dosecs60, 2, MidpointRounding.ToEven);
                     doseComplete.text = dosecs60.ToString() + "µSv";
-
-                    //
                     //           Dose_60 = (((2814 * c) / (r * r))* 0.000001)*0.0277f;
                     //          doseComplete.text = Dose_60.ToString();
                 }
@@ -67,6 +60,8 @@ public class DRDoperator : MonoBehaviour
                     StartCoroutine(calc());
                     obj = other.gameObject.transform.position;
                 }
+         //           Dose_60 = (((2814 * c) / (r * r))* 0.000001)*0.0277f;
+          //          doseComplete.text = Dose_60.ToString();
             }
             if (other.gameObject.tag == "cs137")
             {
@@ -76,11 +71,13 @@ public class DRDoperator : MonoBehaviour
                 {
                     r2 = Vector3.Distance(this.transform.position, other.gameObject.transform.position);
                     dosecs137 = (2814 * 0.137 * (Mathf.Exp(-9 ^ -3) * r2) / (r2 * r2)) * 0.000001f;
-
                     dosecs137 = Math.Round(dosecs137, 2, MidpointRounding.ToEven);
                     //
                     //      Dose_137=(((12500*c)/(r2* r2)* 0.000001));
                     doseComplete.text = Dose_137.ToString()+ "µSv";
+                    //
+              //      Dose_137=(((12500*c)/(r2* r2)* 0.000001));
+                    doseComplete.text = Dose_137.ToString();
                 }
                 cs.Push(r2);
                 if (cs.Count == 1)
@@ -88,15 +85,18 @@ public class DRDoperator : MonoBehaviour
                     StartCoroutine(ndCalc());
                     obj2 = other.gameObject.transform.position;
                 }
-
                 if (cs60 && cs137)
                 {
                     both = Finaldose60 + Finaldose137;
                     both = Math.Round(both, 2, MidpointRounding.ToEven);
+
                     DRDradiation.text = both.ToString() + "µSv/h";
 
                     doseComplete.text = both.ToString() + "µSv";
 
+                    DRDradiation.text = both.ToString()+ "µSv/h";
+
+                    doseComplete.text = both.ToString()+ "µSv";
                     /*         Dosecombine60_137 = Dose_60 + Dose_137;
                              Dosecombine60_137 = Math.Round(Dosecombine60_137, 2, MidpointRounding.ToEven);
                              doseComplete.text = Dosecombine60_137.ToString();*/
